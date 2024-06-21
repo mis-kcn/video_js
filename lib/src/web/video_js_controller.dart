@@ -276,7 +276,11 @@ class VideoJsController {
     if (html.querySelector("#onPlayerReady") != null) {
       ele!.remove();
     }
-    html.querySelector('body')!.children.add(scriptElement);
+
+    final body = html.querySelector('body');
+
+    body?.children.add(scriptElement);
+
     VideoJsResults().listenToValueFromJs(playerId, 'onReady', onReady);
   }
 

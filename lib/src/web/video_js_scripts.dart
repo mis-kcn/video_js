@@ -164,8 +164,10 @@ class VideoJsScripts {
 
   String getPoster(String playerId) => """
     var player = videojs.getPlayer('$playerId');
-    player.ready(function() {
-    var value = player.poster();
-    callBackToDartSide('$playerId', 'getPoster', value);
-    });""";
+    if(player != undefined) {
+      player.ready(function() {
+        var value = player.poster();
+        callBackToDartSide('$playerId', 'getPoster', value);
+      });
+    }""";
 }
