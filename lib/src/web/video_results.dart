@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:js';
+import 'package:universal_html/js.dart';
 import 'package:video_js/src/models/result_from_videoJs.dart';
 
 class VideoJsResults {

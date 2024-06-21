@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:video_js/src/web/video_js_scripts.dart';
 import 'package:universal_html/html.dart' as html;
-import 'dart:ui' as ui;
+
+import 'dart-ui/fake-ui.dart' if (dart.library.html) 'dart-ui/real-ui.dart'
+    as ui;
 
 import 'package:video_js/video_js.dart';
 

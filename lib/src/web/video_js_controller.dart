@@ -1,4 +1,4 @@
-import 'dart:html' as html;
+import 'package:universal_html/html.dart' as html;
 
 import 'package:video_js/src/models/videoJs_options.dart';
 import 'package:video_js/src/web/video_results.dart';
