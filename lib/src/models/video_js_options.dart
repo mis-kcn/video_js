@@ -41,7 +41,7 @@ class VideoJsOptions {
   /// from bottom to top.
   final List<double>? playbackRates;
 
-  /// Setting this to true will change fullscreen behaviour on devices which do not support the HTML5 fullscreen API
+  /// Setting this to true will change fullscreen behavior on devices which do not support the HTML5 fullscreen API
   /// but do support fullscreen on the video element, i.e. iPhone. Instead of making the video fullscreen, the player
   /// will be stretched to fill the browser window.
   final bool? preferFullWindow;
@@ -77,25 +77,30 @@ class VideoJsOptions {
       this.suppressNotSupportedError});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.controls != null) data['controls'] = this.controls;
-    if (this.loop != null) data['loop'] = this.loop;
-    if (this.muted != null) data['muted'] = this.muted;
-    if (this.poster != null) data['poster'] = "\"${this.poster}\"";
-    if (this.aspectRatio != null)
-      data['aspectRatio'] = "\"${this.aspectRatio}\"";
-    if (this.language != null) data['language'] = "\"${this.language}\"";
-    if (this.liveui != null) data['liveui'] = this.liveui;
-    if (this.notSupportedMessage != null)
-      data['notSupportedMessage'] = "\"${this.notSupportedMessage}\"";
-    if (this.playbackRates != null) data['playbackRates'] = this.playbackRates;
-    if (this.preferFullWindow != null)
-      data['preferFullWindow'] = this.preferFullWindow;
-    if (this.responsive != null) data['responsive'] = this.responsive;
-    if (this.suppressNotSupportedError != null)
-      data['suppressNotSupportedError'] = this.suppressNotSupportedError;
-    if (this.sources != null)
-      data['sources'] = this.sources!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    if (controls != null) data['controls'] = controls;
+    if (loop != null) data['loop'] = loop;
+    if (muted != null) data['muted'] = muted;
+    if (poster != null) data['poster'] = "\"$poster\"";
+    if (aspectRatio != null) {
+      data['aspectRatio'] = "\"$aspectRatio\"";
+    }
+    if (language != null) data['language'] = "\"$language\"";
+    if (liveui != null) data['liveui'] = liveui;
+    if (notSupportedMessage != null) {
+      data['notSupportedMessage'] = "\"$notSupportedMessage\"";
+    }
+    if (playbackRates != null) data['playbackRates'] = playbackRates;
+    if (preferFullWindow != null) {
+      data['preferFullWindow'] = preferFullWindow;
+    }
+    if (responsive != null) data['responsive'] = responsive;
+    if (suppressNotSupportedError != null) {
+      data['suppressNotSupportedError'] = suppressNotSupportedError;
+    }
+    if (sources != null) {
+      data['sources'] = sources!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

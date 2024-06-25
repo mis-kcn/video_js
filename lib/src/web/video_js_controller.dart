@@ -1,6 +1,6 @@
 import 'package:universal_html/html.dart' as html;
 
-import 'package:video_js/src/models/videoJs_options.dart';
+import 'package:video_js/src/models/video_js_options.dart';
 import 'package:video_js/src/web/video_results.dart';
 import 'package:video_js/src/web/video_js_scripts.dart';
 
@@ -38,16 +38,24 @@ class VideoJsController {
   }
 
   /// To get volume of video
-  getVolume(Function(String) onVolumeRecive) {
+  getVolume(Function(String) onVolumeReceive) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "getVolume"
       ..innerHtml = VideoJsScripts().getVolume(playerId);
+
     html.Element? ele = html.querySelector("#getVolume");
+
     if (html.querySelector("#getVolume") != null) {
       ele!.remove();
     }
+
     html.querySelector('body')!.children.add(scriptElement);
-    VideoJsResults().listenToValueFromJs(playerId, 'getVolume', onVolumeRecive);
+
+    VideoJsResults().listenToValueFromJs(
+      playerId,
+      'getVolume',
+      onVolumeReceive,
+    );
   }
 
   /// set volume to video player
@@ -129,10 +137,10 @@ class VideoJsController {
   /// To exit from full screen mode
   exitFullScreen() {
     final html.Element scriptElement = html.ScriptElement()
-      ..id = "exiteFullScreen"
+      ..id = "exitFullScreen"
       ..innerHtml = VideoJsScripts().exitFullscreen(playerId);
-    html.Element? ele = html.querySelector("#exiteFullScreen");
-    if (html.querySelector("#exiteFullScreen") != null) {
+    html.Element? ele = html.querySelector("#exitFullScreen");
+    if (html.querySelector("#exitFullScreen") != null) {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
@@ -189,10 +197,10 @@ class VideoJsController {
   }
 
   /// Set video
-  setCurrentTime(String CurrentTime) {
+  setCurrentTime(String currentTime) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "setCurrentTime"
-      ..innerHtml = VideoJsScripts().setCurrentTime(playerId, CurrentTime);
+      ..innerHtml = VideoJsScripts().setCurrentTime(playerId, currentTime);
     html.Element? ele = html.querySelector("#setCurrentTime");
     if (html.querySelector("#setCurrentTime") != null) {
       ele!.remove();

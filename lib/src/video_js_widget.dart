@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:video_js/src/web/video_js_scripts.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'dart-ui/fake-ui.dart' if (dart.library.html) 'dart-ui/real-ui.dart'
+import 'dart-ui/fake_ui.dart' if (dart.library.html) 'dart-ui/real_ui.dart'
     as ui;
 
 import 'package:video_js/video_js.dart';
@@ -73,10 +73,14 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
   /// To generate random string for HtmlElementView ID
   String generateRandomString(int len) {
     var r = Random();
-    const _chars =
+    const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    return List.generate(len, (index) => _chars[r.nextInt(_chars.length)])
-        .join();
+    return List.generate(
+      len,
+      (index) => chars[r.nextInt(
+        chars.length,
+      )],
+    ).join();
   }
 
   @override
@@ -88,8 +92,10 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
           ? HtmlElementView(
               viewType: elementId,
             )
-          : Center(
-              child: Text("Video_js plugin just supported on web"),
+          : const Center(
+              child: Text(
+                'Unsupported platform, VJS only supports web!',
+              ),
             ),
     );
   }
