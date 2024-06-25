@@ -170,4 +170,21 @@ class VideoJsScripts {
         callBackToDartSide('$playerId', 'getPoster', value);
       });
     }""";
+
+  String setMarkers(String playerId, String data) {
+    return """
+    var markersData = $data;
+
+    var player = videojs.getPlayer('$playerId');
+    player.markers({
+      markers: markersData,
+      markerTip: {
+        display: false,
+      },
+      markerStyle: {
+        'width': '8px',
+        'background-color': 'red',
+      }
+    });""";
+  }
 }

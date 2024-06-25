@@ -284,6 +284,21 @@ class VideoJsController {
     VideoJsResults().listenToValueFromJs(playerId, 'onReady', onReady);
   }
 
+  /// Set the markers on the video player
+  setMarkers(String markers) {
+    final html.Element scriptElement = html.ScriptElement()
+      ..id = "setMarkers"
+      ..innerHtml = VideoJsScripts().setMarkers(playerId, markers);
+    html.Element? ele = html.querySelector("#setMarkers");
+    if (html.querySelector("#setMarkers") != null) {
+      ele!.remove();
+    }
+
+    final body = html.querySelector('body');
+
+    body?.children.add(scriptElement);
+  }
+
   /// This method is available on all Video.js players and components.
   /// It is the only supported method of removing a Video.js player from both the DOM and memory.
   dispose() {
