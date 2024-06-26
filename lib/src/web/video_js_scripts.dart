@@ -106,7 +106,11 @@ class VideoJsScripts {
   String play(String playerId) => """
     var player = videojs.getPlayer('$playerId');
     player.ready(function() {
-    player.play();
+    try {
+      player.play();
+    } catch (e) {
+      console.error(e);
+    }
     });""";
 
   String pause(String playerId) => """
@@ -185,6 +189,22 @@ class VideoJsScripts {
         'width': '8px',
         'background-color': 'red',
       }
-    });""";
+    });
+    
+    const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+    if(isFirefox) {
+      console.warn('Firefox detected, markers will be added after video duration change event.');
+      
+      var videoContainer = document.querySelector('#$playerId video');
+      
+      videoContainer.ondurationchange = function() {
+        var currentTime = player.currentTime();
+        console.warn(currentTime);
+        player.markers.removeAll();
+        player.markers.add(markersData);
+      };
+    }
+    """;
   }
 }
