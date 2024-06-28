@@ -191,7 +191,7 @@ class VideoJsScripts {
       }
     });
     
-    const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+    var isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
 
     if(isFirefox) {
       console.warn('Firefox detected, markers will be added after video duration change event.');
